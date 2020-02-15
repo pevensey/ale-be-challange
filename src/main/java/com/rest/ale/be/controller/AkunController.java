@@ -31,17 +31,31 @@ public class AkunController {
 //    }
 
     @PostMapping("/baru")
-    public String signUp(@RequestBody Akun pengguna) {
-        String username = pengguna.getUsername();
+    public String signUp(@RequestBody Akun penggunaBaru) {
+        String username = penggunaBaru.getUsername();
+        String peran = penggunaBaru.getRole();
+
         Akun akun = akunRepo.findByUsername(username);
         String result = "";
         if (akun!=null) {
             //return new ResponseEntity<>(HttpStatus.CONFLICT);
-            result = "akun sudah ada";
+            result = "Maaf, akun sudah ada";
             return result ;
         } else {
             //pengguna.setPassword(bCryptPasswordEncoder.encode(pengguna.getPassword()));
-            akunRepo.save(pengguna);
+            if (peran.equals("mahasiswa")){
+                penggunaBaru.setRole("mahasiswa");
+            } else if(peran.equals("Mahasiswa")){
+                penggunaBaru.setRole("Mahasiswa");
+            } else if(peran.equals("Dosen")){
+                penggunaBaru.setRole("Dosen");
+            } else if(peran.equals("dosen")){
+                penggunaBaru.setRole("dosen");
+            } else{
+                return "Maaf, role yang di isi salah";
+            }
+
+            akunRepo.save(penggunaBaru);
             //return new ResponseEntity<>(HttpStatus.CREATED);
             result = "akun berhasil dibuat";
             return result ;

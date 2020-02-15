@@ -28,8 +28,11 @@ public class Akun {
     private String password;
     @Column
     private String nama;
-    @Column
-    private Enum role;
+
+    public enum Roles {
+        MAHASISWA, DOSEN;
+    }
+    private String role;
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private java.util.Date createdAt;
@@ -61,11 +64,11 @@ public class Akun {
         this.nama = nama;
     }
 
-    public Enum getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Enum role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -84,4 +87,10 @@ public class Akun {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+//    public boolean isRole() {
+//        if (getRole() == Roles.DOSEN) {
+//            return true;
+//        }
+//        return false;
+//    }
 }
