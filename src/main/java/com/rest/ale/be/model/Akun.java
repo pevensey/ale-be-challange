@@ -3,13 +3,16 @@ package com.rest.ale.be.model;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "akun")
+@EntityListeners(AuditingEntityListener.class)
 public class Akun {
-
+    @Id
     @GeneratedValue(
             strategy= GenerationType.AUTO,
             generator="native"
