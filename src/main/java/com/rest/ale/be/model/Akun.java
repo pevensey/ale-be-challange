@@ -21,17 +21,15 @@ public class Akun {
             name = "native",
             strategy = "native"
     )
-    private long id_akun;
-    @Column
+    @Column(name="id_akun")
+    private long idAkun;
+    @Column(name="username")
     private String username;
     @Column
     private String password;
     @Column
     private String nama;
 
-    public enum Roles {
-        MAHASISWA, DOSEN;
-    }
     private String role;
     @Column(nullable = false, updatable = false)
     @CreatedDate

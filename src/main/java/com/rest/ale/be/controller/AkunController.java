@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(path="/akun" )
@@ -31,7 +33,7 @@ public class AkunController {
 //    }
 
     @PostMapping("/baru")
-    public String signUp(@RequestBody Akun penggunaBaru) {
+    public String signUp(@Valid @RequestBody Akun penggunaBaru) {
         String username = penggunaBaru.getUsername();
         String peran = penggunaBaru.getRole();
 
