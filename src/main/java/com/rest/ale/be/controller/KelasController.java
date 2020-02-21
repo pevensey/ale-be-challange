@@ -15,7 +15,6 @@ public class KelasController {
 
     private KelasRepository kelasRepo;
 
-
     @RequestMapping("/hello")
     public String hello(){
         return "Hello Kelas  ";

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JadwalRepository extends JpaRepository<Jadwal, Long> {
-    //Akun findByUsername(String username);
+
 }
