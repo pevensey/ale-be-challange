@@ -33,7 +33,7 @@ public class FileController {
 
     @GetMapping("/")
     public List<DBFile> getAll(){
-        return (List<DBFile>) dbRepo.findAll();
+        return dbRepo.lihatFile();
     }
 
     @PostMapping("/uploadFile")
