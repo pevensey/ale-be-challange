@@ -1,13 +1,14 @@
 package com.rest.ale.be.uploadfile;
 
-import java.util.Arrays;
-import java.util.List;
+import java.security.Key;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
 import com.rest.ale.be.controller.payload.UploadFileResponse;
 import com.rest.ale.be.model.DBFile;
-import com.rest.ale.be.model.Kelas;
+import com.rest.ale.be.model.GetFile;
 import com.rest.ale.be.repository.DBFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -15,9 +16,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
@@ -32,8 +34,8 @@ public class FileController {
     private DBFileRepository dbRepo;
 
     @GetMapping("/")
-    public List<DBFile> getAll(){
-        return dbRepo.lihatFile();
+    public List<GetFile> getAll(){
+            return dbRepo.ambilFile();
     }
 
     @PostMapping("/uploadFile")
@@ -49,6 +51,7 @@ public class FileController {
                 file.getContentType(), file.getSize());
     }
 
+    //masih ada bug
     @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.stream(files)

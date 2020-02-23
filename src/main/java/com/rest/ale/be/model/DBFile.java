@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dokumen")
 @EntityListeners(AuditingEntityListener.class)
-public class DBFile {
+public class    DBFile {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
