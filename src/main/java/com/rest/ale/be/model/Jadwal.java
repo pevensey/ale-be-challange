@@ -105,7 +105,7 @@ public class Jadwal implements Serializable {
     public String getMatkul(){
         return fk_kelas.getMatkul();
     }
-    public String getDosen  (){
+    public String getDosen (){
         return fk_kelas.getDosen();
     }
 //    @Override

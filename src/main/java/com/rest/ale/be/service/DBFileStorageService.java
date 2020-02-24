@@ -26,14 +26,14 @@ public class DBFileStorageService {
         try {
             // Check if the file's name contains invalid characters
             if(fileName.contains("..")) {
-                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+                throw new ResourceTidakTersedia("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
             DBFile dbFile = new DBFile(fileName, file.getContentType(), file.getBytes());
 
             return dbFileRepository.save(dbFile);
         } catch (IOException ex) {
-            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+            throw new ResourceTidakTersedia("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
     public DBFile getFile(String fileId) {
