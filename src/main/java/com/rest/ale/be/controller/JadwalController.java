@@ -42,32 +42,8 @@ public class JadwalController {
         return jadwalService.getAllJadwals();
     }
 
-    @PostMapping("/baru")
-    public Jadwal JadwalBaru(@Valid @RequestBody Jadwal jadwalBaru) {
-//        Kelas cariKelas = jadwalBaru.getFk_kelas();
-//        Optional<Kelas> kelas = kelasRepo.findById(cariKelas);
-//        String result = "";
-//
-//        if (kelas.isPresent()) {
-//            //return new ResponseEntity<>(HttpStatus.CONFLICT);
-//            result = "Jadwal berhasil dibuat";
-//            System.out.println(result);
-           Kelas kelas = new Kelas();
-           //kelas.setId_kelas(jadwalBaru.getFk_kelas());
-           kelas.addJadwal(jadwalBaru);
 
-//        EntityManager
-//        EntityManager em = getEntityManager();
-//            entityManager.persist(kelas);
-            kelasRepo.persist(kelas);
-        return jadwalRepo.save(jadwalBaru);
-//        } else {
-//            result = "Maaf, kelas tidak ada";
-//        }
-//        return result;
-    }
-    //Book
-    @RequestMapping(value = "/{idKelas}/jadwal", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/baru/{idKelas}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Jadwal createBook(@PathVariable(value = "idKelas") Long idKelas, @RequestBody Jadwal jadwal) {
         return jadwalService.createJadwal(idKelas, jadwal);
     }

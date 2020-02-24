@@ -27,31 +27,31 @@ public class JadwalService {
 
     public Optional<Jadwal> getJadwalById(Long JadwalId) {
         if (!JadwalRepo.existsById(JadwalId)) {
-            throw new ResourceTidakTersedia("Jadwal with id " + JadwalId + " not found");
+            throw new ResourceTidakTersedia("Maaf, jadwal dengan id " + JadwalId + " tidak ada");
         }
         return JadwalRepo.findById(JadwalId);
     }
 
 
-    public Jadwal createJadwal(Long authorId, Jadwal Jadwal) {
-        List<Jadwal> Jadwals = new ArrayList<>();
+    public Jadwal createJadwal(Long idKelas, Jadwal Jadwal) {
+        List<Jadwal> jadwals = new ArrayList<>();
         Kelas kelas = new Kelas();
 
-        Optional<Kelas> byId = kelasRepo.findById(authorId);
+        Optional<Kelas> byId = kelasRepo.findById(idKelas);
         if (!byId.isPresent()) {
-            throw new ResourceTidakTersedia("Kelas with id " + authorId + " does not exist");
+            throw new ResourceTidakTersedia("Maaf, kelas dengan id " + idKelas + " tidak ada");
         }
-        Kelas author = byId.get();
+        Kelas ambilKelas = byId.get();
 
         //tie Kelas to Jadwal
-        Jadwal.setFk_kelas(author);
+        Jadwal.setFk_kelas(ambilKelas);
 
-        Jadwal Jadwal1 = JadwalRepo.save(Jadwal);
+        Jadwal jadwalBaru = JadwalRepo.save(Jadwal);
         //tie Jadwal to Kelas
-        Jadwals.add(Jadwal1);
-        kelas.setJadwals(Jadwals);
+        jadwals.add(jadwalBaru);
+        kelas.setJadwals(jadwals);
 
-        return Jadwal1;
+        return jadwalBaru;
 
     }
 

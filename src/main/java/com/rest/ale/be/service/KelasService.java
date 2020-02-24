@@ -21,7 +21,7 @@ public class KelasService {
 
     public Optional<Kelas> getAuthorById(Long id_kelas) {
         if (!kelasRepo.existsById(id_kelas)) {
-            throw new ResourceTidakTersedia("Author with id " + id_kelas + " not found");
+            throw new ResourceTidakTersedia("Maaf, kelas dengan id " + id_kelas + " tidak ada");
         }
         return kelasRepo.findById(id_kelas);
     }

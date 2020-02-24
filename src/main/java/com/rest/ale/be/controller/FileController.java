@@ -1,10 +1,10 @@
-package com.rest.ale.be.uploadfile;
+package com.rest.ale.be.controller;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-import com.rest.ale.be.controller.payload.UploadFileResponse;
+import com.rest.ale.be.payload.UploadFileResponse;
 import com.rest.ale.be.model.DBFile;
 import com.rest.ale.be.model.GetFile;
 import com.rest.ale.be.repository.DBFileRepository;

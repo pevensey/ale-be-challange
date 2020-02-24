@@ -1,4 +1,4 @@
-package com.rest.ale.be.controller.payload;
+package com.rest.ale.be.payload;
 
 public class UploadFileResponse {
     private String fileName;
