@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import com.rest.ale.be.payload.UploadFileResponse;
 import com.rest.ale.be.model.DBFile;
-import com.rest.ale.be.model.GetFile;
+import com.rest.ale.be.payload.GetFileResponse;
 import com.rest.ale.be.repository.DBFileRepository;
 import com.rest.ale.be.service.DBFileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class FileController {
     private DBFileRepository dbRepo;
 
     @GetMapping("/")
-    public List<GetFile> getAll(){
+    public List<GetFileResponse> getAll(){
         return dbRepo.ambilFile();
     }
 

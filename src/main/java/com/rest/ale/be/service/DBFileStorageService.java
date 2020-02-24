@@ -2,7 +2,6 @@ package com.rest.ale.be.service;
 
 import com.rest.ale.be.model.DBFile;
 import com.rest.ale.be.repository.DBFileRepository;
-import com.rest.ale.be.exception.FileStorageException;
 import com.rest.ale.be.exception.ResourceTidakTersedia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
