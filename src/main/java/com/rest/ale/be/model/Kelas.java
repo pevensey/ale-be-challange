@@ -36,35 +36,39 @@ public class Kelas implements Serializable{
     @Column(name="id_kelas")
     private long id_kelas;
 
-    @NotBlank
+//    @NotBlank(message = "tidak bisa kosong")
     @Column(name="matkul")
     private String matkul;
 
-    @NotBlank
+//    @NotBlank
     @Column(name="dosen")
     private String dosen; //fk?
 
-    @OneToMany
-    @JoinColumn(name="fk_kelas", referencedColumnName="id_kelas")
-    private Set<Jadwal> jadwals ;
+    @OneToMany(
+            mappedBy = "fk_kelas",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+//    @JoinColumn(name="jadwal_fk_kelas", referencedColumnName="kelas_id_kelas")
+    private List<Jadwal> jadwals = new ArrayList<>();
 
 
     public Kelas() {
-        super();
+
     }
 
-    public Kelas(Set<Jadwal> jadwals) {
+    public Kelas(List<Jadwal> jadwals) {
         this.jadwals = jadwals;
     }
     public Kelas(Long kelas) {
         this.id_kelas=kelas;
     }
 
-    @JsonCreator
-    public Kelas( @NotBlank String matkul, @NotBlank String dosen) {
-        this.matkul = matkul;
-        this.dosen = dosen;
-    }
+//    @JsonCreator
+//    public Kelas( @NotBlank String matkul, @NotBlank String dosen) {
+//        this.matkul = matkul;
+//        this.dosen = dosen;
+//    }
 
 
     public long getId_kelas() {
@@ -91,6 +95,22 @@ public class Kelas implements Serializable{
         this.dosen = dosen;
     }
 
+    public List<Jadwal> getJadwals() {
+        return jadwals;
+    }
 
+    public void setJadwals(List<Jadwal> jadwals) {
+        this.jadwals = jadwals;
+    }
+
+    public void addJadwal(Jadwal jadwal){
+        jadwals.add(jadwal);
+        jadwal.setFk_kelas(this);
+    }
+
+    public void removeComment(Jadwal comment) {
+        jadwals.remove(comment);
+        comment.setFk_kelas(null);
+    }
 }
 

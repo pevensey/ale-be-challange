@@ -1,19 +1,15 @@
-package com.rest.ale.be.uploadfile;
+package com.rest.ale.be.service;
 
 import com.rest.ale.be.model.DBFile;
 import com.rest.ale.be.repository.DBFileRepository;
+import com.rest.ale.be.exception.FileStorageException;
+import com.rest.ale.be.exception.ResourceTidakTersedia;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 @Service
 public class DBFileStorageService {
@@ -42,6 +38,6 @@ public class DBFileStorageService {
     }
     public DBFile getFile(String fileId) {
         return dbFileRepository.findById(fileId)
-                .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
+                .orElseThrow(() -> new ResourceTidakTersedia("File not found with id " + fileId));
     }
 }

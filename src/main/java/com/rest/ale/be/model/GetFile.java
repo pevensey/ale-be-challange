@@ -1,5 +1,10 @@
 package com.rest.ale.be.model;
 
+import java.io.Serializable;
+
+/*
+ Bean untuk get data dari DBFile. Berbeda dari DBFile yang digunakan sebagai POST, GetFile untuk GET data
+ */
 public class GetFile {
     private String id;
 
@@ -31,6 +36,8 @@ public class GetFile {
         this.fileType = fileType;
     }
 
+    //constructor nya berbeda dengan DBFile(String fileName, String fileType, byte[] data).
+    //Hasil yang diharapkan dari constructcor ini adalah (id, fileName, fileType)
     public GetFile(String id, String fileName, String fileType) {
         this.id = id;
         this.fileName = fileName;

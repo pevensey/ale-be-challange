@@ -1,4 +1,4 @@
-package com.rest.ale.be.uploadfile;
+package com.rest.ale.be.exception;
 
 import java.io.IOException;
 

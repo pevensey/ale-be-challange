@@ -9,6 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.DataInput;
 import java.io.IOException;
 import java.io.Serializable;
@@ -33,24 +35,34 @@ public class Jadwal implements Serializable {
     @Column(name="id_jadwal")
     private long idJadwal;
 
-    @Column(name = "fk_kelas")
-    private long fk_kelas;
 
-    public Jadwal() {
-        super();
-    }
-
-    public Jadwal(@JsonProperty("kelas")long fk_kelas, @JsonProperty("ruang")String ruang,@JsonProperty("waktu")String waktu) {
-        this.fk_kelas = fk_kelas;
-        this.ruang = ruang;
-        this.waktu = waktu;
-    }
+    @ManyToOne(
+            fetch = FetchType.LAZY
+    )
+    @JsonIgnore
+    @JoinColumn(name = "kelas_id_kelas")
+    //@Column(name = "fk_kelas")
+    //private long fk_kelas;
+    private Kelas fk_kelas;
 
     @Column(name="ruangan")
     private String ruang;
 
     @Column(name="waktu")
     private String waktu;
+
+//    public Jadwal() {
+//        super();
+//    }
+    public Jadwal() {
+
+    }
+
+//    public Jadwal(@JsonProperty("kelas")Kelas fk_kelas, @JsonProperty("ruang")String ruang, @JsonProperty("waktu")String waktu) {
+//        this.fk_kelas = fk_kelas;
+//        this.ruang = ruang;
+//        this.waktu = waktu;
+//    }
 
     public Jadwal(Jadwal jadwalBaru) {
     }
@@ -63,11 +75,13 @@ public class Jadwal implements Serializable {
         this.idJadwal = idJadwal;
     }
 
-    public long getFk_kelas() {
+    @JsonIgnore
+    public Kelas getFk_kelas() {
         return fk_kelas;
     }
 
-    public void setFk_kelas(long fk_kelas) {
+    @JsonIgnore
+    public void setFk_kelas(Kelas fk_kelas) {
         this.fk_kelas = fk_kelas;
     }
 
@@ -85,5 +99,24 @@ public class Jadwal implements Serializable {
 
     public void setWaktu(String waktu) {
         this.waktu = waktu;
+    }
+
+    //method yang digunakan untuk fetch data Kelas
+    public String getMatkul(){
+        return fk_kelas.getMatkul();
+    }
+    public String getDosen  (){
+        return fk_kelas.getDosen();
+    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Jadwal )) return false;
+//        return idJadwal != null && idJadwal.equals(((Jadwal) o).getIdJadwal());
+//    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 }
