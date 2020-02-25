@@ -1,5 +1,6 @@
 package com.rest.ale.be.controller;
 
+import com.rest.ale.be.exception.ResourceTidakTersedia;
 import com.rest.ale.be.model.Akun;
 import com.rest.ale.be.repository.AkunRepository;
 import java.util.List;
@@ -16,7 +17,6 @@ public class AkunController {
 
     private AkunRepository akunRepo;
 
-
     @RequestMapping("/hello")
     public String hello(){
         return "Hello Akun  ";
@@ -27,13 +27,8 @@ public class AkunController {
         return akunRepo.findAll();
     }
 
-//    @PostMapping("/tambah")
-//    public Akun tambahAkun(@Valid @RequestBody Akun akun) {
-//        return akunRepo.save(akun);
-//    }
-
     @PostMapping("/baru")
-    public String signUp(@Valid @RequestBody Akun penggunaBaru) {
+    public Akun signUp(@Valid @RequestBody Akun penggunaBaru) {
         String username = penggunaBaru.getUsername();
         String peran = penggunaBaru.getRole();
 
@@ -41,26 +36,26 @@ public class AkunController {
         String result = "";
         if (akun!=null) {
             //return new ResponseEntity<>(HttpStatus.CONFLICT);
-            result = "Maaf, akun sudah ada";
-            return result ;
+            throw new ResourceTidakTersedia("Maaf, username sudah digunakan");
         } else {
             //pengguna.setPassword(bCryptPasswordEncoder.encode(pengguna.getPassword()));
             if (peran.equals("mahasiswa")){
-                penggunaBaru.setRole("mahasiswa");
-            } else if(peran.equals("Mahasiswa")){
                 penggunaBaru.setRole("Mahasiswa");
-            } else if(peran.equals("Dosen")){
+            }
+            else if(peran.equals("Mahasiswa")){
+                penggunaBaru.setRole("Mahasiswa");
+            }
+            else if(peran.equals("Dosen")){
                 penggunaBaru.setRole("Dosen");
-            } else if(peran.equals("dosen")){
-                penggunaBaru.setRole("dosen");
-            } else{
-                return "Maaf, role yang di isi salah";
+            }
+            else if(peran.equals("dosen")){
+                penggunaBaru.setRole("Dosen");
+            }
+            else{
+                    throw new ResourceTidakTersedia("Maaf, role yang di isi salah. Role harus mahasiswa atau dosen");
             }
 
-            akunRepo.save(penggunaBaru);
-            //return new ResponseEntity<>(HttpStatus.CREATED);
-            result = "akun berhasil dibuat";
-            return result ;
+            return akunRepo.save(penggunaBaru);
         }
     }
 }
