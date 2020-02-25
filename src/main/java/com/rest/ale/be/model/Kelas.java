@@ -1,23 +1,14 @@
 package com.rest.ale.be.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 
 @Entity
@@ -49,7 +40,7 @@ public class Kelas implements Serializable{
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-//    @JoinColumn(name="jadwal_fk_kelas", referencedColumnName="kelas_id_kelas")
+
     private List<Jadwal> jadwals = new ArrayList<>();
 
 
@@ -60,16 +51,10 @@ public class Kelas implements Serializable{
     public Kelas(List<Jadwal> jadwals) {
         this.jadwals = jadwals;
     }
+
     public Kelas(Long kelas) {
         this.id_kelas=kelas;
     }
-
-//    @JsonCreator
-//    public Kelas( @NotBlank String matkul, @NotBlank String dosen) {
-//        this.matkul = matkul;
-//        this.dosen = dosen;
-//    }
-
 
     public long getId_kelas() {
         return id_kelas;
@@ -103,14 +88,5 @@ public class Kelas implements Serializable{
         this.jadwals = jadwals;
     }
 
-    public void addJadwal(Jadwal jadwal){
-        jadwals.add(jadwal);
-        jadwal.setFk_kelas(this);
-    }
-
-    public void removeComment(Jadwal comment) {
-        jadwals.remove(comment);
-        comment.setFk_kelas(null);
-    }
 }
 

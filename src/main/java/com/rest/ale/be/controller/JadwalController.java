@@ -48,7 +48,7 @@ public class JadwalController {
         return jadwalService.createJadwal(idKelas, jadwal);
     }
 
-    @RequestMapping(value = "/jadwal/{idJadwal}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{idJadwal}", method = RequestMethod.GET)
     public Optional<Jadwal> getBookById(@PathVariable(value = "idJadwal") Long idJadwal) {
         return jadwalService.getJadwalById(idJadwal);
     }

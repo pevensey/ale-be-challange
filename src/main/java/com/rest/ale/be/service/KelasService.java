@@ -19,7 +19,7 @@ public class KelasService {
     }
 
 
-    public Optional<Kelas> getAuthorById(Long id_kelas) {
+    public Optional<Kelas> getKelasById(Long id_kelas) {
         if (!kelasRepo.existsById(id_kelas)) {
             throw new ResourceTidakTersedia("Maaf, kelas dengan id " + id_kelas + " tidak ada");
         }
