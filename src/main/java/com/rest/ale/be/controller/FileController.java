@@ -22,8 +22,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 @RequestMapping(path="/file" )
 public class FileController {
-    //private static final Logger logger = LoggerFactory.getLogger(FileController.class);
-
 
     @Autowired
     private DBFileStorageService dbFileStorageService;

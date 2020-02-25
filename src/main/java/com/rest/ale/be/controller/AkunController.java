@@ -33,7 +33,7 @@ public class AkunController {
         String peran = penggunaBaru.getRole();
 
         Akun akun = akunRepo.findByUsername(username);
-        String result = "";
+
         if (akun!=null) {
             //return new ResponseEntity<>(HttpStatus.CONFLICT);
             throw new ResourceTidakTersedia("Maaf, username sudah digunakan");

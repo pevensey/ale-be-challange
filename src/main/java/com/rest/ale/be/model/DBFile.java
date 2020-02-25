@@ -21,8 +21,6 @@ public class    DBFile {
     @Lob
     private byte[] data;
 
-    private String keterangan;
-
     public DBFile() {
 
     }
