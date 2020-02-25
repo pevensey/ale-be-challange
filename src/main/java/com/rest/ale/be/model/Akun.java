@@ -38,7 +38,7 @@ public class Akun {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonManagedReference
+
     private List<Enroll> enroll = new ArrayList<>();
 //    private String role;
     @Column(nullable = false, updatable = false)

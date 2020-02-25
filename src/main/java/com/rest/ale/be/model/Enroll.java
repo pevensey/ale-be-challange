@@ -30,7 +30,7 @@ public class Enroll implements Serializable {
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    @JsonBackReference
+
     @JsonIgnore
     @JoinColumn(name = "kelas_id_kelas")
     private Kelas fk_kelas;
@@ -38,7 +38,7 @@ public class Enroll implements Serializable {
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    @JsonBackReference
+
     @JsonIgnore
     @JoinColumn(name = "akun_id_akun")
     private Akun fk_akun;

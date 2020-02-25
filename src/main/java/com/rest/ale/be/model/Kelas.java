@@ -49,7 +49,7 @@ public class Kelas implements Serializable{
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonManagedReference
+
     private List<Enroll> enroll = new ArrayList<>();
     public Kelas() {
 
