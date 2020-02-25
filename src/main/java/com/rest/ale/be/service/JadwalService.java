@@ -5,9 +5,11 @@ import com.rest.ale.be.model.Jadwal;
 import com.rest.ale.be.model.Kelas;
 import com.rest.ale.be.repository.JadwalRepository;
 import com.rest.ale.be.repository.KelasRepository;
+import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.*;
 
 @Service
@@ -33,7 +35,7 @@ public class JadwalService {
     }
 
 
-    public Jadwal createJadwal(Long idKelas, Jadwal Jadwal) {
+    public Jadwal createJadwal(Long idKelas, Jadwal jadwal) {
         List<Jadwal> jadwals = new ArrayList<>();
         Kelas kelas = new Kelas();
 
@@ -44,9 +46,9 @@ public class JadwalService {
         Kelas ambilKelas = byId.get();
 
         //tie Kelas to Jadwal
-        Jadwal.setFk_kelas(ambilKelas);
+        jadwal.setFk_kelas(ambilKelas);
 
-        Jadwal jadwalBaru = JadwalRepo.save(Jadwal);
+        Jadwal jadwalBaru = JadwalRepo.save(jadwal);
         //tie Jadwal to Kelas
         jadwals.add(jadwalBaru);
         kelas.setJadwals(jadwals);

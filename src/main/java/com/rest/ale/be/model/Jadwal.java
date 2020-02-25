@@ -1,13 +1,16 @@
 package com.rest.ale.be.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Entity
@@ -38,8 +41,12 @@ public class Jadwal implements Serializable {
     @Column(name="ruangan")
     private String ruang;
 
-    @Column(name="waktu")
-    private String waktu;
+    @Column(name = "hari")
+    private String hari;
+
+    @JsonFormat(pattern="HH:mm")
+    @Column(name = "jam")
+    private LocalTime jam;
 
     public Jadwal() {
 
@@ -74,12 +81,20 @@ public class Jadwal implements Serializable {
         this.ruang = ruang;
     }
 
-    public String getWaktu() {
-        return waktu;
+    public String getHari() {
+        return hari;
     }
 
-    public void setWaktu(String waktu) {
-        this.waktu = waktu;
+    public void setHari(String hari) {
+        this.hari = hari;
+    }
+
+    public LocalTime getJam() {
+        return jam;
+    }
+
+    public void setJam(LocalTime jam) {
+        this.jam = jam;
     }
 
     //method yang digunakan untuk fetch data Kelas
