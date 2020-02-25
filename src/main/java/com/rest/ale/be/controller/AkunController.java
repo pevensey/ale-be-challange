@@ -30,7 +30,7 @@ public class AkunController {
     @PostMapping("/baru")
     public Akun signUp(@Valid @RequestBody Akun penggunaBaru) {
         String username = penggunaBaru.getUsername();
-        String peran = penggunaBaru.getRole();
+        //String peran = penggunaBaru.getRole();
 
         Akun akun = akunRepo.findByUsername(username);
 
@@ -39,21 +39,21 @@ public class AkunController {
             throw new ResourceTidakTersedia("Maaf, username sudah digunakan");
         } else {
             //pengguna.setPassword(bCryptPasswordEncoder.encode(pengguna.getPassword()));
-            if (peran.equals("mahasiswa")){
-                penggunaBaru.setRole("Mahasiswa");
-            }
-            else if(peran.equals("Mahasiswa")){
-                penggunaBaru.setRole("Mahasiswa");
-            }
-            else if(peran.equals("Dosen")){
-                penggunaBaru.setRole("Dosen");
-            }
-            else if(peran.equals("dosen")){
-                penggunaBaru.setRole("Dosen");
-            }
-            else{
-                    throw new ResourceTidakTersedia("Maaf, role yang di isi salah. Role harus mahasiswa atau dosen");
-            }
+//            if (peran.equals("mahasiswa")){
+//                penggunaBaru.setRole("Mahasiswa");
+//            }
+//            else if(peran.equals("Mahasiswa")){
+//                penggunaBaru.setRole("Mahasiswa");
+//            }
+//            else if(peran.equals("Dosen")){
+//                penggunaBaru.setRole("Dosen");
+//            }
+//            else if(peran.equals("dosen")){
+//                penggunaBaru.setRole("Dosen");
+//            }
+//            else{
+//                    throw new ResourceTidakTersedia("Maaf, role yang di isi salah. Role harus mahasiswa atau dosen");
+//            }
 
             return akunRepo.save(penggunaBaru);
         }

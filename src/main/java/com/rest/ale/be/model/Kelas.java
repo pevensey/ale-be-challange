@@ -1,6 +1,7 @@
 package com.rest.ale.be.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -43,7 +44,13 @@ public class Kelas implements Serializable{
 
     private List<Jadwal> jadwals = new ArrayList<>();
 
-
+    @OneToMany(
+            mappedBy = "fk_kelas",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<Enroll> enroll = new ArrayList<>();
     public Kelas() {
 
     }
@@ -88,5 +95,12 @@ public class Kelas implements Serializable{
         this.jadwals = jadwals;
     }
 
+    public List<Enroll> getEnroll() {
+        return enroll;
+    }
+
+    public void setEnroll(List<Enroll> enroll) {
+        this.enroll = enroll;
+    }
 }
 

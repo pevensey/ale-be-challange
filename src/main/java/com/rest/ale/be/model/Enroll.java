@@ -40,7 +40,7 @@ public class Enroll implements Serializable {
     )
     @JsonBackReference
     @JsonIgnore
-    @JoinColumn(name = "kelas_id_akun")
+    @JoinColumn(name = "akun_id_akun")
     private Akun fk_akun;
 
     public Enroll(){
@@ -87,7 +87,7 @@ public class Enroll implements Serializable {
     public String getNama(){
         return fk_akun.getNama();
     }
-    public String getRole (){
-        return fk_akun.getRole();
-    }
+//    public String getRole (){
+//        return fk_akun.getRole();
+//    }
 }

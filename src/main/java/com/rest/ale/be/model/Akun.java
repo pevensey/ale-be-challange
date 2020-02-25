@@ -1,12 +1,15 @@
 package com.rest.ale.be.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "akun")
@@ -30,7 +33,14 @@ public class Akun {
     @Column
     private String nama;
 
-    private String role;
+    @OneToMany(
+            mappedBy = "fk_akun",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<Enroll> enroll = new ArrayList<>();
+//    private String role;
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private java.util.Date createdAt;
@@ -62,13 +72,13 @@ public class Akun {
         this.nama = nama;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
+//    public String getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(String role) {
+//        this.role = role;
+//    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -85,7 +95,24 @@ public class Akun {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-//    public boolean isRole() {
+
+    public long getIdAkun() {
+        return idAkun;
+    }
+
+    public void setIdAkun(long idAkun) {
+        this.idAkun = idAkun;
+    }
+
+    public List<Enroll> getEnroll() {
+        return enroll;
+    }
+
+    public void setEnroll(List<Enroll> enroll) {
+        this.enroll = enroll;
+    }
+
+    //    public boolean isRole() {
 //        if (getRole() == Roles.DOSEN) {
 //            return true;
 //        }
