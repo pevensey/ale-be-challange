@@ -4,6 +4,7 @@ import com.rest.ale.be.model.Kelas;
 import com.rest.ale.be.repository.KelasRepository;
 import com.rest.ale.be.service.KelasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,7 +28,7 @@ public class KelasController {
 
     @GetMapping("/")
     public List<Kelas> getAll(){
-        return (List<Kelas>) kelasRepo.findAll();
+        return kelasService.getAllKelas();
     }
     @GetMapping("/{id}")
     public Optional<Kelas> getKelasById(@PathVariable(value="id") Long id){
@@ -35,7 +36,17 @@ public class KelasController {
     }
     @PostMapping("/baru")
     public Kelas kelasBaru(@Valid @RequestBody Kelas kelasBaru) {
-        return kelasRepo.save(kelasBaru);
+        return kelasService.createKelas(kelasBaru);
+    }
+    
+    @RequestMapping(value = "/{idKelas}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Kelas updateKelas(@PathVariable(value = "idKelas") Long kelasId, @RequestBody Kelas kelas) {
+
+        return kelasService.updateKelasById(kelasId, kelas );
     }
 
+    @RequestMapping(value = "/{idKelas}", method = RequestMethod.DELETE)
+    public String deleteKelasById(@PathVariable(value = "idKelas") Long kelasId) {
+        return kelasService.deleteKelasById(kelasId);
+    }
 }
