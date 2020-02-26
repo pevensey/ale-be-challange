@@ -39,7 +39,7 @@ public class FileController {
         DBFile dbFile = dbFileStorageService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/file/downloadFile/")
                 .path(dbFile.getId())
                 .toUriString();
 
@@ -64,5 +64,10 @@ public class FileController {
                 .contentType(MediaType.parseMediaType(dbFile.getFileType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
                 .body(new ByteArrayResource(dbFile.getData()));
+    }
+
+    @RequestMapping(value = "/{idFile}", method = RequestMethod.DELETE)
+    public String deleteJadwalById(@PathVariable(value = "idFile") String fileId) {
+        return dbFileStorageService.deleteFileById(fileId);
     }
 }

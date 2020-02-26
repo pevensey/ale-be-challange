@@ -39,4 +39,14 @@ public class DBFileStorageService {
         return dbFileRepository.findById(fileId)
                 .orElseThrow(() -> new ResourceTidakTersedia("File not found with id " + fileId));
     }
+    public String deleteFileById(String FileId) {
+        if (!dbFileRepository.existsById(FileId)) {
+            throw new ResourceTidakTersedia("File dengan id " + FileId + " tidak ada");
+        }
+
+        dbFileRepository.deleteById(FileId);
+
+        return "File dengan id "+ FileId +" berhasil di hapus";
+
+    }
 }

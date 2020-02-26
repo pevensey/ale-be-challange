@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "dokumen")
+@Table(name = "file")
 @EntityListeners(AuditingEntityListener.class)
 public class    DBFile {
     @Id
