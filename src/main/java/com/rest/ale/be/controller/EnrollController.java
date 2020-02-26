@@ -29,12 +29,16 @@ public class EnrollController {
 
     @RequestMapping(value = "/baru/{idKelas}/{idAkun}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Enroll createEnroll(@PathVariable(value = "idKelas") Long idKelas, @PathVariable(value = "idAkun")Long idAkun, @RequestBody Enroll enroll) {
-        //String username = enroll.getNama();
         return enrollService.createEnroll(idKelas, idAkun, enroll);
     }
 
     @RequestMapping(value = "/{idEnroll}", method = RequestMethod.GET)
     public Optional<Enroll> getEnrollById(@PathVariable(value = "idEnroll") Long idEnroll) {
         return enrollService.getEnrollById(idEnroll);
+    }
+
+    @RequestMapping(value = "/{idEnroll}", method = RequestMethod.DELETE)
+    public String deleteEnrollById(@PathVariable(value = "idEnroll") Long enrollId) {
+        return enrollService.deleteEnrollById(enrollId);
     }
 }

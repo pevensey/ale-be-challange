@@ -34,8 +34,8 @@ public class EnrollService {
 
 
     public Optional<Enroll> getEnrollById(Long enrollId) {
-        if (!akunRepo.existsById(enrollId)) {
-            throw new ResourceTidakTersedia("Maaf, akun dengan id " + enrollId + " tidak ada");
+        if (!enrollRepo.existsById(enrollId)) {
+            throw new ResourceTidakTersedia("Maaf, Enroll dengan id " + enrollId + " tidak ada");
         }
         return enrollRepo.findById(enrollId);
     }
@@ -75,6 +75,17 @@ public class EnrollService {
             akun.setEnroll(enrolls);
             return enrollBaru;
         }
+
+    }
+
+    public String deleteEnrollById(Long enrollId) {
+        if (!enrollRepo.existsById(enrollId)) {
+            throw new ResourceTidakTersedia("Enroll dengan id " + enrollId + " tidak ada");
+        }
+
+        enrollRepo.deleteById(enrollId);
+
+        return "Enroll dengan id "+ enrollId +" berhasil di hapus";
 
     }
 

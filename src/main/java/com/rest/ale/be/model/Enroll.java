@@ -83,12 +83,12 @@ public class Enroll implements Serializable {
     }
 
     //method yang digunakan untuk fetch data Kelas
-//    public String getMatkul(){
-//        return fkKelas.getMataKuliah();
-//    }
-//    public String getDosen (){
-//        return fkKelas.getDosen();
-//    }
+    public String getMatkul(){
+        return fkKelas.getMatkul();
+    }
+    public String getDosen (){
+        return fkKelas.getDosen();
+    }
 
     //method yang digunakan untuk fetch data Akun
     public String getNama(){
