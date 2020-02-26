@@ -99,7 +99,7 @@ public class Jadwal implements Serializable {
 
     //method yang digunakan untuk fetch data Kelas
     public String getMatkul(){
-        return fk_kelas.getMatkul();
+        return fk_kelas.getMataKuliah();
     }
     public String getDosen (){
         return fk_kelas.getDosen();

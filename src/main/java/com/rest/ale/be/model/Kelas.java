@@ -63,15 +63,15 @@ public class Kelas implements Serializable{
         this.idKelas=kelas;
     }
 
-    public long getId_kelas() {
+    public long getIdKelas() {
         return idKelas;
     }
 
-    public void setId_kelas(long id_kelas) {
+    public void setIdKelas(long id_kelas) {
         this.idKelas = id_kelas;
     }
 
-    public String getMatkul() {
+    public String getMataKuliah() {
         return matkul;
     }
 

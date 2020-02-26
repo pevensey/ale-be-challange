@@ -77,7 +77,7 @@ public class Enroll implements Serializable {
 
     //method yang digunakan untuk fetch data Kelas
     public String getMatkul(){
-        return fkKelas.getMatkul();
+        return fkKelas.getMataKuliah();
     }
     public String getDosen (){
         return fkKelas.getDosen();
