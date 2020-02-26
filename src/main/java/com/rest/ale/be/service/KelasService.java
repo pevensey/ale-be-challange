@@ -1,7 +1,6 @@
 package com.rest.ale.be.service;
 
 import com.rest.ale.be.model.Kelas;
-import com.rest.ale.be.model.Kelas;
 import com.rest.ale.be.repository.KelasRepository;
 import com.rest.ale.be.exception.ResourceTidakTersedia;
 import org.springframework.beans.factory.annotation.Autowired;

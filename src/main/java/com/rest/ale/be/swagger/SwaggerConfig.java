@@ -17,14 +17,7 @@ import java.time.LocalDate;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-//    @Bean
-//    public Docket api() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.any())
-//                .paths(PathSelectors.any())
-//                .build();
-//    }
+
     @Bean
     public Docket eDesignApi(SwaggerConfigProperties swaggerConfigProperties) {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo(swaggerConfigProperties)).enable(Boolean.valueOf(swaggerConfigProperties.getEnabled())).select().apis(RequestHandlerSelectors.any())

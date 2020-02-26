@@ -1,8 +1,6 @@
 package com.rest.ale.be.controller;
 
-import com.rest.ale.be.exception.ResourceTidakTersedia;
 import com.rest.ale.be.model.Akun;
-import com.rest.ale.be.repository.AkunRepository;
 import java.util.List;
 import java.util.Optional;
 

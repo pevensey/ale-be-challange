@@ -1,8 +1,6 @@
 package com.rest.ale.be.controller;
 
 import com.rest.ale.be.model.Jadwal;
-import com.rest.ale.be.repository.JadwalRepository;
-import com.rest.ale.be.repository.KelasRepository;
 import com.rest.ale.be.service.JadwalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

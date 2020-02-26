@@ -1,7 +1,5 @@
 package com.rest.ale.be.payload;
 
-import java.io.Serializable;
-
 /*
  Bean untuk get data dari DBFile. Berbeda dari DBFile yang digunakan sebagai POST, GetFileResponse untuk GET data
  */

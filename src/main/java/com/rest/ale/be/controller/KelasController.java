@@ -1,7 +1,6 @@
 package com.rest.ale.be.controller;
 
 import com.rest.ale.be.model.Kelas;
-import com.rest.ale.be.repository.KelasRepository;
 import com.rest.ale.be.service.KelasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,9 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path="/kelas" )
 public class KelasController {
-    @Autowired
-
-    private KelasRepository kelasRepo;
 
     @Autowired
     private KelasService kelasService;
