@@ -42,35 +42,39 @@ public class EnrollService {
 
 
     public Enroll createEnroll(Long idKelas, Long idAkun, Enroll enroll) {
-        List<Kelas> kelass = new ArrayList<>();
-        List<Akun> akuns = new ArrayList<>();
+
         List<Enroll> enrolls = new ArrayList<>();
         Kelas kelas = new Kelas();
         Akun akun = new Akun();
 
         Optional<Kelas> byId = kelasRepo.findById(idKelas);
         Optional<Akun> byusername = akunRepo.findById(idAkun);
-        if (!byId.isPresent()) {
-            throw new ResourceTidakTersedia("Maaf, kelas dengan id " + idKelas + " tidak ada");
+        Enroll cariAkunDanKelas = enrollRepo.findByFkAkun_IdAkunAndFkKelas_IdKelas(idAkun, idKelas);
+
+
+        if (!byId.isPresent() ) {
+            throw new ResourceTidakTersedia("Maaf, kelas tidak ada");
         }
-        Kelas ambilKelas = byId.get();
-        Akun ambilAkun = byusername.get();
+        else if (!byusername.isPresent()){
+            throw new ResourceTidakTersedia("Maaf, akun tidak ada");
+        }
+        if (cariAkunDanKelas!=null){
+            throw new ResourceTidakTersedia("Maaf, akun ini sudah enroll di kelas ini");
+        }
+        else {
+            Kelas ambilKelas = byId.get();
+            Akun ambilAkun = byusername.get();
+            enroll.setFk_kelas(ambilKelas);
+            enroll.setFk_akun(ambilAkun);
 
-        //tie Kelas to Jadwal
-        enroll.setFk_kelas(ambilKelas);
-        enroll.setFk_akun(ambilAkun);
+            Enroll enrollBaru = enrollRepo.save(enroll);
 
+            enrolls.add(enrollBaru);
 
-
-        Enroll enrollBaru = enrollRepo.save(enroll);
-        //tie Jadwal to Kelas
-
-        enrolls.add(enrollBaru);
-
-        kelas.setEnroll(enrolls);
-        akun.setEnroll(enrolls);
-
-        return enrollBaru;
+            kelas.setEnroll(enrolls);
+            akun.setEnroll(enrolls);
+            return enrollBaru;
+        }
 
     }
 

@@ -33,7 +33,7 @@ public class Enroll implements Serializable {
 
     @JsonIgnore
     @JoinColumn(name = "kelas_id_kelas")
-    private Kelas fk_kelas;
+    private Kelas fkKelas;
 
     @ManyToOne(
             fetch = FetchType.LAZY
@@ -41,7 +41,7 @@ public class Enroll implements Serializable {
 
     @JsonIgnore
     @JoinColumn(name = "akun_id_akun")
-    private Akun fk_akun;
+    private Akun fkAkun;
 
     public Enroll(){
 
@@ -57,35 +57,35 @@ public class Enroll implements Serializable {
 
     @JsonIgnore
     public Kelas getFk_kelas() {
-        return fk_kelas;
+        return fkKelas;
     }
 
     @JsonIgnore
     public void setFk_kelas(Kelas fk_kelas) {
-        this.fk_kelas = fk_kelas;
+        this.fkKelas = fk_kelas;
     }
 
     @JsonIgnore
     public Akun getFk_akun() {
-        return fk_akun;
+        return fkAkun;
     }
 
     @JsonIgnore
     public void setFk_akun(Akun fk_akun) {
-        this.fk_akun = fk_akun;
+        this.fkAkun = fk_akun;
     }
 
     //method yang digunakan untuk fetch data Kelas
     public String getMatkul(){
-        return fk_kelas.getMatkul();
+        return fkKelas.getMatkul();
     }
     public String getDosen (){
-        return fk_kelas.getDosen();
+        return fkKelas.getDosen();
     }
 
     //method yang digunakan untuk fetch data Akun
     public String getNama(){
-        return fk_akun.getNama();
+        return fkAkun.getNama();
     }
 //    public String getRole (){
 //        return fk_akun.getRole();

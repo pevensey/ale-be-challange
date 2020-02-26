@@ -34,7 +34,7 @@ public class Akun {
     private String nama;
 
     @OneToMany(
-            mappedBy = "fk_akun",
+            mappedBy = "fkAkun",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )

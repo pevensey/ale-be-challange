@@ -26,7 +26,7 @@ public class Kelas implements Serializable{
             strategy = "native"
     )
     @Column(name="id_kelas")
-    private long id_kelas;
+    private long idKelas;
 
 //    @NotBlank(message = "tidak bisa kosong")
     @Column(name="matkul")
@@ -45,7 +45,7 @@ public class Kelas implements Serializable{
     private List<Jadwal> jadwals = new ArrayList<>();
 
     @OneToMany(
-            mappedBy = "fk_kelas",
+            mappedBy = "fkKelas",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -60,15 +60,15 @@ public class Kelas implements Serializable{
     }
 
     public Kelas(Long kelas) {
-        this.id_kelas=kelas;
+        this.idKelas=kelas;
     }
 
     public long getId_kelas() {
-        return id_kelas;
+        return idKelas;
     }
 
     public void setId_kelas(long id_kelas) {
-        this.id_kelas = id_kelas;
+        this.idKelas = id_kelas;
     }
 
     public String getMatkul() {
