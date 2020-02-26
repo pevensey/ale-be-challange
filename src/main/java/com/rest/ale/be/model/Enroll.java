@@ -98,11 +98,6 @@ public class Enroll implements Serializable {
         return fkAkun.getNama();
     }
 
-//    public String getRole (){
-//        return fk_akun.getRole();
-//    }
-
-
     public Date getCreatedAt() {
         return createdAt;
     }

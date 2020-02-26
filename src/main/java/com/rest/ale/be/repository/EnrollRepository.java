@@ -12,6 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface EnrollRepository extends JpaRepository<Enroll, Long> {
-
     Enroll findByFkAkun_IdAkunAndFkKelas_IdKelas(Long fk_akun, Long fk_kelas);
 }

@@ -31,11 +31,9 @@ public class Kelas implements Serializable{
     @Column(name="id_kelas")
     private long idKelas;
 
-//    @NotBlank(message = "tidak bisa kosong")
     @Column(name="matkul")
     private String matkul;
 
-//    @NotBlank
     @Column(name="dosen")
     private String dosen; //fk?
 

@@ -73,14 +73,6 @@ public class Akun {
         this.nama = nama;
     }
 
-//    public String getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(String role) {
-//        this.role = role;
-//    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -114,10 +106,4 @@ public class Akun {
         this.enroll = enroll;
     }
 
-    //    public boolean isRole() {
-//        if (getRole() == Roles.DOSEN) {
-//            return true;
-//        }
-//        return false;
-//    }
 }

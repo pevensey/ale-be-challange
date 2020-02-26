@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface JadwalRepository extends JpaRepository<Jadwal, Long> {
-    //Enroll findByFkAkun_IdAkunAndFkKelas_IdKelas(Long fk_akun, Long fk_kelas);
     Jadwal findByRuangAndHariAndJam(String ruang, String hari, LocalTime jam);
 }
