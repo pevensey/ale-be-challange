@@ -23,7 +23,7 @@ public class AkunService {
 
     public Optional<Akun> getAkunById(Long AkunId) {
         if (!akunRepo.existsById(AkunId)) {
-            throw new ResourceTidakTersedia("Maaf, jadwal dengan id " + AkunId + " tidak ada");
+            throw new ResourceTidakTersedia("Maaf, akun dengan id " + AkunId + " tidak ada");
         }
         return akunRepo.findById(AkunId);
     }
@@ -43,33 +43,32 @@ public class AkunService {
 
     }
 
-//    public Akun updateAkunById(Long jadwalId, Akun jadwalRequest) {
-//        if (!akunRepo.existsById(jadwalId)) {
-//            throw new ResourceTidakTersedia("Akun with id " + jadwalId + " not found");
-//        }
-//        Optional<Akun> jadwal = akunRepo.findById(jadwalId);
-//
-//        if (!jadwal.isPresent()) {
-//            throw new ResourceTidakTersedia("Akun dengan id " + jadwalId + " tidak ada");
-//        }
-//
-//        Akun jadwalBaru = jadwal.get();
-//        jadwalBaru.setHari(jadwalRequest.getHari());
-//        jadwalBaru.setJam(jadwalRequest.getJam());
-//        jadwalBaru.setRuang(jadwalRequest.getRuang());
-//
-//        return akunRepo.save(jadwalBaru);
-//    }
-//
-//    public String deleteAkunById(Long AkunId) {
-//        if (!akunRepo.existsById(AkunId)) {
-//            throw new ResourceTidakTersedia("Akun dengan id " + AkunId + " tidak ada");
-//        }
-//
-//        akunRepo.deleteById(AkunId);
-//
-//        return "jadwal dengan id "+AkunId+" berhasil di hapus";
-//
-//    }
+    public Akun updateAkunById(Long akunId, Akun akunRequest) {
+        if (!akunRepo.existsById(akunId)) {
+            throw new ResourceTidakTersedia("Akun dengan id " + akunId + "tidak ada");
+        }
+        Optional<Akun> akun = akunRepo.findById(akunId);
+
+        if (!akun.isPresent()) {
+            throw new ResourceTidakTersedia("Akun dengan id " + akunId + " tidak ada");
+        }
+
+        Akun akunBaru = akun.get();
+        akunBaru.setNama(akunRequest.getNama());
+        akunBaru.setPassword(akunRequest.getPassword());
+
+        return akunRepo.save(akunBaru);
+    }
+
+    public String deleteAkunById(Long AkunId) {
+        if (!akunRepo.existsById(AkunId)) {
+            throw new ResourceTidakTersedia("Akun dengan id " + AkunId + " tidak ada");
+        }
+
+        akunRepo.deleteById(AkunId);
+
+        return "akun dengan id "+AkunId+" berhasil di hapus";
+
+    }
 
 }

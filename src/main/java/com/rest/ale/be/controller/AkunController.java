@@ -4,9 +4,11 @@ import com.rest.ale.be.exception.ResourceTidakTersedia;
 import com.rest.ale.be.model.Akun;
 import com.rest.ale.be.repository.AkunRepository;
 import java.util.List;
+import java.util.Optional;
 
 import com.rest.ale.be.service.AkunService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,5 +35,20 @@ public class AkunController {
     public Akun signUp(@Valid @RequestBody Akun penggunaBaru) {
         String username = penggunaBaru.getUsername();
         return akunService.createAkun(username, penggunaBaru);
+    }
+    @RequestMapping(value = "/{idAkun}", method = RequestMethod.GET)
+    public Optional<Akun> getAkunById(@PathVariable(value = "idAkun") Long idAkun) {
+        return akunService.getAkunById(idAkun);
+    }
+
+    @RequestMapping(value = "/{idAkun}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Akun updateAkun(@PathVariable(value = "idAkun") Long jadwalId, @RequestBody Akun jadwal) {
+
+        return akunService.updateAkunById(jadwalId, jadwal );
+    }
+
+    @RequestMapping(value = "/{idAkun}", method = RequestMethod.DELETE)
+    public String deleteAkunById(@PathVariable(value = "idAkun") Long jadwalId) {
+        return akunService.deleteAkunById(jadwalId);
     }
 }
