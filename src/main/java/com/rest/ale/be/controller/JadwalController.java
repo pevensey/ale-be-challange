@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Entity;
@@ -43,9 +44,8 @@ public class JadwalController {
         return jadwalService.getAllJadwals();
     }
 
-
     @RequestMapping(value = "/baru/{idKelas}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Jadwal createBook(@PathVariable(value = "idKelas") Long idKelas, @RequestBody Jadwal jadwal) {
+    public Jadwal createJadwal(@PathVariable(value = "idKelas") Long idKelas, @RequestBody Jadwal jadwal) {
         String hari = jadwal.getHari();
         if (hari.equals("Senin")){
                 jadwal.setHari("Senin");
@@ -96,7 +96,18 @@ public class JadwalController {
     }
 
     @RequestMapping(value = "/{idJadwal}", method = RequestMethod.GET)
-    public Optional<Jadwal> getBookById(@PathVariable(value = "idJadwal") Long idJadwal) {
+    public Optional<Jadwal> getJadwalById(@PathVariable(value = "idJadwal") Long idJadwal) {
         return jadwalService.getJadwalById(idJadwal);
     }
+
+    @RequestMapping(value = "/{idJadwal}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Jadwal updateJadwal(@PathVariable(value = "idJadwal") Long jadwalId, @RequestBody Jadwal jadwal) {
+        return jadwalService.updateJadwalById(jadwalId, jadwal );
+    }
+
+    @RequestMapping(value = "/{idJadwal}", method = RequestMethod.DELETE)
+    public String deleteJadwalById(@PathVariable(value = "idJadwal") Long jadwalId) {
+        return jadwalService.deleteJadwalById(jadwalId);
+    }
+
 }

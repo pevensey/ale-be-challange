@@ -6,6 +6,7 @@ import com.rest.ale.be.model.Kelas;
 import com.rest.ale.be.repository.JadwalRepository;
 import com.rest.ale.be.repository.KelasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Time;
@@ -64,31 +65,32 @@ public class JadwalService {
 
     }
 
-//    public Jadwal updateJadwalById(Long JadwalId, Jadwal JadwalRequest) {
-//        if (!JadwalRepo.existsById(JadwalId)) {
-//            throw new ResourceTidakTersedia("Jadwal with id " + JadwalId + " not found");
-//        }
-//        Optional<Jadwal> Jadwal = JadwalRepo.findById(JadwalId);
-//
-//        if (!Jadwal.isPresent()) {
-//            throw new ResourceTidakTersedia("Jadwal with id " + JadwalId + " not found");
-//        }
-//
-//        Jadwal Jadwal1 = Jadwal.get();
-//        Jadwal1.setGenre(JadwalRequest.getGenre());
-//        Jadwal1.setTitle(JadwalRequest.getTitle());
-//
-//        return JadwalRepo.save(Jadwal1);
-//    }
-//
-//    public ResponseEntity<Object> deleteJadwalById(long JadwalId) {
-//        if (!JadwalRepo.existsById(JadwalId)) {
-//            throw new ResourceTidakTersedia("Jadwal with id " + JadwalId + " not found");
-//        }
-//
-//        JadwalRepo.deleteById(JadwalId);
-//
-//        return ResponseEntity.ok().build();
-//
-//    }
+    public Jadwal updateJadwalById(Long jadwalId, Jadwal jadwalRequest) {
+        if (!jadwalRepo.existsById(jadwalId)) {
+            throw new ResourceTidakTersedia("Jadwal with id " + jadwalId + " not found");
+        }
+        Optional<Jadwal> jadwal = jadwalRepo.findById(jadwalId);
+
+        if (!jadwal.isPresent()) {
+            throw new ResourceTidakTersedia("Jadwal dengan id " + jadwalId + " tidak ada");
+        }
+
+        Jadwal jadwalBaru = jadwal.get();
+        jadwalBaru.setHari(jadwalRequest.getHari());
+        jadwalBaru.setJam(jadwalRequest.getJam());
+        jadwalBaru.setRuang(jadwalRequest.getRuang());
+
+        return jadwalRepo.save(jadwalBaru);
+    }
+
+    public String deleteJadwalById(Long JadwalId) {
+        if (!jadwalRepo.existsById(JadwalId)) {
+            throw new ResourceTidakTersedia("Jadwal dengan id " + JadwalId + " tidak ada");
+        }
+
+        jadwalRepo.deleteById(JadwalId);
+
+        return "jadwal dengan id "+JadwalId+" berhasil di hapus";
+
+    }
 }
