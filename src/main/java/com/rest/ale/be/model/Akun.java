@@ -44,6 +44,7 @@ public class Akun {
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private java.util.Date createdAt;
+
     @Column(nullable = false)
     @LastModifiedDate
     private java.util.Date updatedAt;
@@ -103,6 +104,7 @@ public class Akun {
     public void setIdAkun(long idAkun) {
         this.idAkun = idAkun;
     }
+
 
     public List<Enroll> getEnroll() {
         return enroll;

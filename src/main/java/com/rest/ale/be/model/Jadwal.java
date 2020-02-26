@@ -4,6 +4,8 @@ package com.rest.ale.be.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 
 @Entity
@@ -48,6 +51,13 @@ public class Jadwal implements Serializable {
     @Column(name = "jam")
     private LocalTime jam;
 
+    @Column(nullable = false, updatable = false)
+    @CreatedDate
+    private java.util.Date createdAt;
+
+    @Column(nullable = false)
+    @LastModifiedDate
+    private java.util.Date updatedAt;
     public Jadwal() {
 
     }
@@ -99,10 +109,25 @@ public class Jadwal implements Serializable {
 
     //method yang digunakan untuk fetch data Kelas
     public String getMatkul(){
-        return fk_kelas.getMataKuliah();
+        return fk_kelas.getMatkul();
     }
     public String getDosen (){
         return fk_kelas.getDosen();
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

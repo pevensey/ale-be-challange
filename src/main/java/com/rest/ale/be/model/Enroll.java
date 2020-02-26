@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "enroll")
@@ -43,6 +46,13 @@ public class Enroll implements Serializable {
     @JoinColumn(name = "akun_id_akun")
     private Akun fkAkun;
 
+    @Column(nullable = false, updatable = false)
+    @CreatedDate
+    private java.util.Date createdAt;
+
+    @Column(nullable = false)
+    @LastModifiedDate
+    private java.util.Date updatedAt;
     public Enroll(){
 
     }
@@ -76,18 +86,36 @@ public class Enroll implements Serializable {
     }
 
     //method yang digunakan untuk fetch data Kelas
-    public String getMatkul(){
-        return fkKelas.getMataKuliah();
-    }
-    public String getDosen (){
-        return fkKelas.getDosen();
-    }
+//    public String getMatkul(){
+//        return fkKelas.getMataKuliah();
+//    }
+//    public String getDosen (){
+//        return fkKelas.getDosen();
+//    }
 
     //method yang digunakan untuk fetch data Akun
     public String getNama(){
         return fkAkun.getNama();
     }
+
 //    public String getRole (){
 //        return fk_akun.getRole();
 //    }
+
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

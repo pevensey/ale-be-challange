@@ -1,9 +1,12 @@
 package com.rest.ale.be.model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "dokumen")
@@ -21,6 +24,13 @@ public class    DBFile {
     @Lob
     private byte[] data;
 
+    @Column(nullable = false, updatable = false)
+    @CreatedDate
+    private java.util.Date createdAt;
+
+    @Column(nullable = false)
+    @LastModifiedDate
+    private java.util.Date updatedAt;
     public DBFile() {
 
     }
@@ -61,5 +71,21 @@ public class    DBFile {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
