@@ -6,10 +6,8 @@ import com.rest.ale.be.model.Kelas;
 import com.rest.ale.be.repository.JadwalRepository;
 import com.rest.ale.be.repository.KelasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -92,5 +90,54 @@ public class JadwalService {
 
         return "jadwal dengan id "+JadwalId+" berhasil di hapus";
 
+    }
+
+    public String cekHari(String hari){
+        if (hari.equals("Senin")){
+            hari = "Senin";
+        }
+        else if(hari.equals("senin")){
+            hari = "Senin";
+        }
+        else if(hari.equals("Selasa")){
+            hari = "Selasa";
+        }
+        else if(hari.equals("selasa")){
+            hari = "Selasa";
+        }
+        else if(hari.equals("Rabu")){
+            hari = "Rabu";
+        }
+        else if(hari.equals("rabu")){
+            hari = "Rabu";
+        }
+        else if(hari.equals("Kamis ")){
+            hari = ("Kamis");
+        }
+        else if(hari.equals("kamis")){
+            hari = ("Kamis");
+        }
+        else if(hari.equals("Jumat")){
+            hari = ("Jumat");
+        }
+        else if(hari.equals("jumat")){
+            hari = ("Jumat");
+        }
+        else if(hari.equals("Sabtu")){
+            hari = ("Sabtu");
+        }
+        else if(hari.equals("sabtu")){
+            hari = ("Sabtu");
+        }
+        else if(hari.equals("Minggu")){
+            hari = ("Minggu");
+        }
+        else if(hari.equals("minggu")){
+            hari = ("Minggu");
+        }
+        else{
+            throw new ResourceTidakTersedia("Maaf, hari yang di isi salah");
+        }
+        return hari;
     }
 }

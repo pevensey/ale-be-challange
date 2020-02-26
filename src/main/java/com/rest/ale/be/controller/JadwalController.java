@@ -47,51 +47,8 @@ public class JadwalController {
     @RequestMapping(value = "/baru/{idKelas}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Jadwal createJadwal(@PathVariable(value = "idKelas") Long idKelas, @RequestBody Jadwal jadwal) {
         String hari = jadwal.getHari();
-        if (hari.equals("Senin")){
-                jadwal.setHari("Senin");
-            }
-            else if(hari.equals("senin")){
-                jadwal.setHari("Senin");
-            }
-            else if(hari.equals("Selasa")){
-                jadwal.setHari("Selasa");
-            }
-            else if(hari.equals("selasa")){
-                jadwal.setHari("Selasa");
-            }
-            else if(hari.equals("Rabu")){
-                jadwal.setHari("Rabu");
-            }
-            else if(hari.equals("rabu")){
-                jadwal.setHari("Rabu");
-            }
-            else if(hari.equals("Kamis ")){
-                jadwal.setHari("Kamis");
-            }
-            else if(hari.equals("kamis")){
-                jadwal.setHari("Kamis");
-            }
-            else if(hari.equals("Jumat")){
-                jadwal.setHari("Jumat");
-            }
-            else if(hari.equals("jumat")){
-                jadwal.setHari("Jumat");
-            }
-            else if(hari.equals("Sabtu")){
-                jadwal.setHari("Sabtu");
-            }
-            else if(hari.equals("sabtu")){
-                jadwal.setHari("Sabtu");
-            }
-            else if(hari.equals("Minggu")){
-                jadwal.setHari("Minggu");
-            }
-            else if(hari.equals("minggu")){
-                jadwal.setHari("Minggu");
-            }
-            else{
-                    throw new ResourceTidakTersedia("Maaf, hari yang di isi salah");
-            }
+        String cekHari= jadwalService.cekHari(hari);
+        jadwal.setHari(cekHari);
         return jadwalService.createJadwal(idKelas, jadwal);
     }
 
@@ -102,6 +59,9 @@ public class JadwalController {
 
     @RequestMapping(value = "/{idJadwal}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Jadwal updateJadwal(@PathVariable(value = "idJadwal") Long jadwalId, @RequestBody Jadwal jadwal) {
+        String hari = jadwal.getHari();
+        String cekHari= jadwalService.cekHari(hari);
+        jadwal.setHari(cekHari);
         return jadwalService.updateJadwalById(jadwalId, jadwal );
     }
 
