@@ -2,25 +2,20 @@ package com.rest.ale.be;
 
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
-import javax.persistence.EntityManagerFactory;
-
 
 @SpringBootApplication
 @EnableJpaAuditing
 @EntityScan("com.rest.ale.be.model")
-public class Application extends SpringBootServletInitializer {
+public class RestApplication extends SpringBootServletInitializer {
 
 	@Bean
 	public CommonsRequestLoggingFilter requestLoggingFilter() {
@@ -33,10 +28,10 @@ public class Application extends SpringBootServletInitializer {
 	}
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Application.class);
+		return application.sources(RestApplication.class);
 	}
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(RestApplication.class, args);
 	}
 
 }
