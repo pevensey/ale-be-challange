@@ -57,11 +57,7 @@ public class AkunController {
         return akunService.deleteAkunById(jadwalId);
     }
 
-//    public AkunController(AkunService akunService,
-//                          BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.akunService = akunService;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-//    }
+
     public AkunController(AkunRepository akunRepo,
                           BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.akunRepo = akunRepo;
