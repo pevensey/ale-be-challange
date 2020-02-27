@@ -1,5 +1,7 @@
 package com.rest.ale.be.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -28,6 +30,7 @@ public class Akun {
     @Column(name="username")
     private String username;
     @Column
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @Column
     private String nama;
@@ -55,6 +58,7 @@ public class Akun {
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     public String getPassword() {
         return password;
@@ -95,7 +99,6 @@ public class Akun {
     public void setIdAkun(long idAkun) {
         this.idAkun = idAkun;
     }
-
 
     public List<Enroll> getEnroll() {
         return enroll;
