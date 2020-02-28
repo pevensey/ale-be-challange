@@ -10,8 +10,8 @@ REST API for absent, class scheduling and material sharing. This rest-api could 
 * Maven 3.6.2,
 * Maria DB 10.4.8.
 
-### Parameter
-These parameter tested on Postman v7.19.1.
+### Endpoints
+These endpoints tested on Postman v7.19.1.
 
 ### `GET /akun`
 
