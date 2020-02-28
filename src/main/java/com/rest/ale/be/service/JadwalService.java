@@ -111,7 +111,7 @@ public class JadwalService {
         else if(hari.equals("rabu")){
             hari = "Rabu";
         }
-        else if(hari.equals("Kamis ")){
+        else if(hari.equals("Kamis")){
             hari = ("Kamis");
         }
         else if(hari.equals("kamis")){
