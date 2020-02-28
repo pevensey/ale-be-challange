@@ -3,16 +3,15 @@
 ## General Info
 REST API for absent, class scheduling and material sharing. This rest-api could perform GET, POST, PUT, and DELETE method.
 
-## Getting Started
-
-I'm using intellij idea for IDE, 
+## Specification
+ 
 * JDK 1.8, 
 * Spring Boot 2.0.1. RELEASE, 
 * Maven 3.6.2,
 * Maria DB 10.4.8.
 
 ### Parameter
-These parameter tested on Postman v7.19.1
+These parameter tested on Postman v7.19.1.
 
 ### `GET /akun`
 
@@ -108,3 +107,6 @@ Enroll with idKelas and idAkun.
 
 Delete enroll by id.
 
+### `POST /login`
+
+login to generate JWT.
